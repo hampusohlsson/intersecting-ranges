@@ -1,0 +1,9 @@
+{
+  "name": "intersecting-ranges",
+  "version": "1.0.0",
+  "description": "Find intersecting ranges using Marzullo algorithm",
+  "main": "index.js",
+  "repository": "git@github.com:hampusohlsson/intersecting-ranges.git",
+  "author": "Hampus Ohlsson <hampus.ohlsson@gmail.com>",
+  "license": "MIT"
+}
