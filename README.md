@@ -3,6 +3,12 @@ Find the [relaxed intersection](https://en.wikipedia.org/wiki/Relaxed_intersecti
 
 ![diagram](https://i.imgur.com/IqhI22a.png)
 
+## Installation
+
+```
+yarn add intersecting-ranges
+```
+
 ## Usage
 Example using ranges in the picture
 
