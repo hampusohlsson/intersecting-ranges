@@ -1,5 +1,5 @@
 # Intersecting Ranges
-Find the common intersecting ranges using [Marzullo's algorithm](https://en.wikipedia.org/wiki/Marzullo%27s_algorithm) 
+Find the N-th largest intersecting ranges using a variant of [Marzullo's algorithm](https://en.wikipedia.org/wiki/Marzullo%27s_algorithm). 
 
 ![diagram](https://i.imgur.com/IqhI22a.png)
 
