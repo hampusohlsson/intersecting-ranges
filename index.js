@@ -42,7 +42,7 @@
     intersectingRanges.default = intersectingRanges;
     module.exports = intersectingRanges;
   } else if (typeof define === 'function' && typeof define.amd === 'object' && define.amd) {
-    // register as 'classnames', consistent with npm package name
+    // register as 'intersectingRanges', consistent with npm package name
     define('intersectingRanges', [], function() {
       return intersectingRanges;
     });
