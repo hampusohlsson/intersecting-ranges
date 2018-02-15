@@ -3,7 +3,8 @@ Find the common intersecting ranges using [Marzullo's algorithm](https://en.wiki
 
 ![diagram](https://i.imgur.com/IqhI22a.png)
 
-### Usage
+## Usage
+Example using ranges in the picture
 
 ```js
 const intersectingRanges = require('intersecting-ranges');
