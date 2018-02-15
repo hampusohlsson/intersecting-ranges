@@ -5,5 +5,14 @@
   "main": "index.js",
   "repository": "git@github.com:hampusohlsson/intersecting-ranges.git",
   "author": "Hampus Ohlsson <hampus.ohlsson@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "keywords": [
+    "intersection",
+    "overlapping",
+    "ranges",
+    "intervals",
+    "marzullo",
+    "set theory",
+    "relaxed intersection"
+  ]
 }
