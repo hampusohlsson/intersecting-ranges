@@ -6,36 +6,49 @@
  */
 
 (function() {
-  const START = 1;
-  const END = -1;
   function intersectingRanges(ranges) {
-    const points = ranges
-      // Break range intervals into start/end values
-      .reduce((arr, range, rangeIndex) => {
-        return arr
-          .concat({ value: range[0], type: START, rangeIndex })
-          .concat({ value: range[1], type: END, rangeIndex });
-      }, [])
-      // Sort on value, then on type
-      // Invert type sorting if comparing two points in the same range
-      .sort((a, b) => {
-        let valueDiff = a.value - b.value;
-        if (valueDiff !== 0) {
-          return valueDiff;
-        } else {
-          return a.type - b.type * (a.rangeIndex === b.rangeIndex) ? -1 : 1;
-        }
-      })
-      // For each point add the level of intersecting ranges
-      .reduce((arr, p, index) => {
-        const prevLevel = index > 0 ? arr[index - 1].level : 0;
-        return arr.concat(Object.assign({}, p, { level: prevLevel + p.type, index }));
-      }, []);
+    var START = 1;
+    var END = -1;
+    var points = [];
+
+    // Break range intervals into start/end values
+    ranges.forEach(function(range, index) {
+      points.push({ value: range[0], rangeIndex: index, type: START });
+      points.push({ value: range[1], rangeIndex: index, type: END });
+    });
+
+    // Sort on value, then on type
+    // Invert type sorting if comparing two points in the same range
+    points.sort(function(a, b) {
+      var valueDiff = a.value - b.value;
+      if (valueDiff !== 0) {
+        return valueDiff;
+      } else {
+        return a.type - b.type * (a.rangeIndex === b.rangeIndex) ? -1 : 1;
+      }
+    });
+
+    // For each point add the count of intersecting ranges
+    var count = 0;
+    points = points.map(function(p, index) {
+      count += p.type;
+      return Object.assign({}, p, { count: count, index: index });
+    });
+
     // Get the max number of simultaneous intersecting ranges
-    const maxLevels = points.reduce((max, p) => Math.max(max, p.level), 0);
-    // Remove all starting points that are not at the max overlap,
+    var maxCount = points.reduce(function(max, p) {
+      return Math.max(max, p.count);
+    }, 0);
+
+    // Remove all starting points that are not at the max intersection count,
     // then create interval with starting value and its next neigbor as end value
-    return points.filter(p => p.level === maxLevels).map(p => [p.value, points[p.index + 1].value]);
+    return points
+      .filter(function(p) {
+        return p.count === maxCount;
+      })
+      .map(function(p) {
+        return [p.value, points[p.index + 1].value];
+      });
   }
 
   if (typeof module !== 'undefined' && module.exports) {
