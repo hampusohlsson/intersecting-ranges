@@ -11,13 +11,11 @@
   function intersectingRanges(ranges) {
     const points = ranges
       // Break range intervals into start/end values
-      .reduce(
-        (arr, range, rangeIndex) =>
-          arr
-            .concat({ value: range[0], type: START, rangeIndex })
-            .concat({ value: range[1], type: END, rangeIndex }),
-        []
-      )
+      .reduce((arr, range, rangeIndex) => {
+        return arr
+          .concat({ value: range[0], type: START, rangeIndex })
+          .concat({ value: range[1], type: END, rangeIndex });
+      }, [])
       // Sort on value, then on type
       // Invert type sorting if comparing two points in the same range
       .sort((a, b) => {
@@ -35,13 +33,9 @@
       }, []);
     // Get the max number of simultaneous intersecting ranges
     const maxLevels = points.reduce((max, p) => Math.max(max, p.level), 0);
-    return (
-      points
-        // Remove all starting points that are not at the max overlap
-        .filter(p => p.level === maxLevels)
-        // Create interval with this point as starting value and next point as end value
-        .map(p => [p.value, points[p.index + 1].value])
-    );
+    // Remove all starting points that are not at the max overlap,
+    // then create interval with starting value and its next neigbor as end value
+    return points.filter(p => p.level === maxLevels).map(p => [p.value, points[p.index + 1].value]);
   }
 
   if (typeof module !== 'undefined' && module.exports) {
