@@ -40,6 +40,10 @@
       return Math.max(max, p.count);
     }, 0);
 
+    if (ranges.length > 1 && maxCount === 1) {
+      return [];
+    }
+
     // Remove all starting points that are not at the max intersection count,
     // then create interval with starting value and its next neigbor as end value
     return points
