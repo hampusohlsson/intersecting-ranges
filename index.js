@@ -6,10 +6,11 @@
  */
 
 (function() {
-  function intersectingRanges(ranges) {
+  function intersectingRanges(ranges, userOptions = {}) {
     var START = 1;
     var END = -1;
     var points = [];
+    var options = Object.assign({ omitEmpty: true }, userOptions);
 
     // Break range intervals into start/end values
     ranges.forEach(function(range, index) {
@@ -40,7 +41,7 @@
       return Math.max(max, p.count);
     }, 0);
 
-    if (ranges.length > 1 && maxCount === 1) {
+    if (options.omitEmpty && ranges.length > 1 && maxCount === 1) {
       return [];
     }
 
